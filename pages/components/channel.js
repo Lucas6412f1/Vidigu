@@ -94,9 +94,8 @@ const channelPage = {
         }
 
         try {
-            // DEZE LIJN IS AANGEPAST!
-            // Zorg ervoor dat deze URL de exacte URL is van je Socket.IO backend service op Render!
-            socket = io('https://vidigu-backend.onrender.com', { // <--- HIER IS DE WIJZIGING!
+            // DEZE URL MOET NAAR JE LIVE SOCKET.IO BACKEND WIJZEN
+            socket = io('https://vidigu-backend.onrender.com', { // <--- Dit is de correcte URL
                 auth: {
                     token: window.appState.token // Stuur JWT-token mee voor authenticatie
                 }
