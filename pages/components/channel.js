@@ -37,7 +37,10 @@ const channelPage = {
         const dummyStream = {
             title: `Live Coder Sessie: ${streamerUsername} - JavaScript Mastery`,
             streamer: streamerUsername,
-            hlsUrl: `http://localhost:8000/live/${streamerUsername}/index.m3u8` // <--- BELANGRIJK: VERVANG DIT DOOR DE ECHTE HLS URL VAN JE STREAMING SERVER!
+            // LET OP: Deze HLS URL 'http://localhost:8000' is voor je streaming server (bijv. NGINX-RTMP).
+            // Deze heeft NIETS te maken met je Node.js backend op Render.
+            // Als je later een live stream wilt hosten, moet deze URL naar die live stream server wijzen.
+            hlsUrl: `http://localhost:8000/live/${streamerUsername}/index.m3u8` 
         };
 
         if (Hls.isSupported()) {
@@ -91,8 +94,9 @@ const channelPage = {
         }
 
         try {
-            // <--- BELANGRIJK: VERVANG DEZE URL DOOR DE URL VAN JE SOCKET.IO BACKEND SERVICE OP RENDER!
-            socket = io('http://localhost:3000', {
+            // DEZE LIJN IS AANGEPAST!
+            // Zorg ervoor dat deze URL de exacte URL is van je Socket.IO backend service op Render!
+            socket = io('https://vidigu-backend.onrender.com', { // <--- HIER IS DE WIJZIGING!
                 auth: {
                     token: window.appState.token // Stuur JWT-token mee voor authenticatie
                 }
