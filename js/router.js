@@ -21,24 +21,28 @@ function loadContent(path, params = {}) {
     // Haal de juiste pagina-functie op
     switch (path) {
         case '/':
-            pageHtml = homePage.getHtml();
+            // Zorg ervoor dat 'homePage' gedefinieerd is in pages/components/home.js
+            pageHtml = homePage.getHtml(); 
             pageScript = homePage.run;
             break;
         case '/login':
+            // Zorg ervoor dat 'loginPage' gedefinieerd is in pages/components/login.js
             pageHtml = loginPage.getHtml();
             pageScript = loginPage.run;
             break;
         case '/register':
+            // Zorg ervoor dat 'registerPage' gedefinieerd is in pages/components/register.js
             pageHtml = registerPage.getHtml();
             pageScript = registerPage.run;
             break;
         case '/channel/:username':
+            // Zorg ervoor dat 'channelPage' gedefinieerd is in pages/components/channel.js
             pageHtml = channelPage.getHtml();
             pageScript = channelPage.run;
             break;
         case '/dashboard':
             // Controleer of gebruiker streamer is voordat dashboard getoond wordt
-            if (!window.appState.isAuthenticated || window.appState.user.role !== 'streamer') {
+            if (!window.appState || !window.appState.isAuthenticated || window.appState.user.role !== 'streamer') {
                 router.navigate('/'); // Terug naar home als niet geautoriseerd
                 return;
             }
@@ -57,10 +61,14 @@ function loadContent(path, params = {}) {
     }
 
     // Update de DOM en voer de paginalogica uit
-    appContainer.innerHTML = pageHtml;
-    // Roep de 'run' functie van de pagina aan om event listeners te koppelen etc.
-    if (pageScript) {
-        pageScript(params); // Geef parameters door aan de paginalogica
+    if (appContainer) { // Voeg een check toe voor appContainer
+        appContainer.innerHTML = pageHtml;
+        // Roep de 'run' functie van de pagina aan om event listeners te koppelen etc.
+        if (pageScript) {
+            pageScript(params); // Geef parameters door aan de paginalogica
+        }
+    } else {
+        console.error("App container met ID 'app' niet gevonden.");
     }
 }
 
@@ -77,11 +85,25 @@ function navigate(path) {
  * Bepaalt welke content geladen moet worden op basis van de huidige URL.
  */
 function handleLocation() {
-    const path = window.location.pathname;
+    // De basis-URL van je GitHub Pages repository (de naam van je repository)
+    const BASE_PATH = '/Vidigu'; 
+    
+    // Verwijder de basis-path van de URL
+    let path = window.location.pathname;
+    if (path.startsWith(BASE_PATH)) {
+        path = path.substring(BASE_PATH.length);
+    }
+    
+    // Zorg ervoor dat de path '/' is als deze leeg is na het verwijderen van de basis-path
+    if (path === '') {
+        path = '/';
+    }
+
     let matched = false;
 
     for (const routePath in routes) {
         // Regex voor het matchen van routes met parameters
+        // De regex moet de BASE_PATH niet meer bevatten, aangezien die al is verwijderd uit 'path'
         const regex = new RegExp(`^${routePath.replace(/:\w+/g, '([^/]+)')}$`);
         const match = path.match(regex);
 
@@ -99,7 +121,9 @@ function handleLocation() {
     }
 
     if (!matched) {
-        loadContent('/404'); // Valback voor 404 pagina
+        // Als geen enkele route matcht, laad dan de 404 pagina
+        // We moeten hier '/404' doorgeven, omdat de 'default' case daarop gebaseerd is
+        loadContent('/404'); 
     }
 }
 
