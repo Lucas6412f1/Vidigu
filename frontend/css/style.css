@@ -1,0 +1,266 @@
+:root {
+    --primary-color: #6a1b9a; /* Paars */
+    --secondary-color: #ff9800; /* Oranje */
+    --background-color: #1a1a1a; /* Donkergrijs */
+    --text-color: #e0e0e0; /* Lichtgrijs */
+    --card-bg: #2a2a2a;
+    --border-color: #444;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header Styling */
+#main-header {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#main-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-links a {
+    margin-left: 1.5rem;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.search-bar input {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--text-color);
+    margin-right: 0.5rem;
+}
+
+.search-bar button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #e68a00;
+}
+
+/* Main Content Area */
+#app {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    min-height: 70vh; /* Zorgt voor minimale hoogte */
+}
+
+/* Forms */
+.form-container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 3rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: calc(100% - 22px); /* Padding en border meerekenen */
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--text-color);
+}
+
+.form-container button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #5c1682;
+}
+
+/* Footer Styling */
+footer {
+    background-color: var(--card-bg);
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+/* Basic Stream Card Styling (voor homepagina) */
+.stream-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.stream-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.stream-card:hover {
+    transform: translateY(-5px);
+}
+
+.stream-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.stream-card-info {
+    padding: 1rem;
+}
+
+.stream-card-info h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.stream-card-info p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Channel Page Styling (video player en chat) */
+.channel-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.video-player-container {
+    flex: 3; /* Neemt 3 delen van de ruimte in */
+    background-color: black; /* Achtergrond voor video */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video-player-container video {
+    width: 100%;
+    display: block;
+}
+
+.chat-container {
+    flex: 1; /* Neemt 1 deel van de ruimte in */
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Zorgt dat chat niet uitloopt */
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto; /* Scrollen voor chatberichten */
+    max-height: 600px; /* Max hoogte voor chatbox */
+}
+
+.chat-input {
+    border-top: 1px solid var(--border-color);
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--text-color);
+}
+
+.chat-input button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Responsiviteit */
+@media (max-width: 768px) {
+    .channel-container {
+        flex-direction: column; /* Onder elkaar op kleinere schermen */
+    }
+    .chat-messages {
+        max-height: 300px; /* Minder hoogte voor chat op mobiel */
+    }
+    .nav-links {
+        display: none; /* Of maak een hamburger menu */
+    }
+}
