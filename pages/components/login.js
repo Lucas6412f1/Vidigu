@@ -1,4 +1,6 @@
 // js/pages/login.js
+import { loginUser } from '../api/auth.js'; // <-- AANGEPAST: Correcte import van loginUser
+
 const loginPage = {
     getHtml: () => {
         return `
@@ -35,7 +37,7 @@ const loginPage = {
             const password = passwordInput.value;
 
             try {
-                const response = await window.authApi.loginUser(email, password);
+                const response = await loginUser(email, password); // <-- AANGEPASTD: Directe aanroep
                 console.log('Login succesvol:', response);
                 window.router.navigate('/dashboard'); // Navigeer naar dashboard of home na login
             } catch (error) {
@@ -45,4 +47,4 @@ const loginPage = {
     }
 };
 
-window.loginPage = loginPage;
+// <-- AANGEPASTD: Deze regel is verwijderd (was: window.loginPage = loginPage;)

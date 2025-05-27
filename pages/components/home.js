@@ -44,5 +44,4 @@ const homePage = {
     }
 };
 
-// Maak de homePage object globaal beschikbaar
-window.homePage = homePage;
+// <-- AANGEPASTD: Deze regel is verwijderd (was: window.homePage = homePage;)

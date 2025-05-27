@@ -1,4 +1,6 @@
 // js/pages/register.js
+import { registerUser } from '../api/auth.js'; // <-- AANGEPASTD: Correcte import van registerUser
+
 const registerPage = {
     getHtml: () => {
         return `
@@ -41,10 +43,10 @@ const registerPage = {
             const password = passwordInput.value;
 
             try {
-                const response = await window.authApi.registerUser(username, email, password);
+                const response = await registerUser(username, email, password); // <-- AANGEPASTD: Directe aanroep
                 console.log('Registratie succesvol:', response);
                 alert('Registratie succesvol! Je kunt nu inloggen.');
-                window.router.navigate('/login'); // Navigeer naar login pagina na registratie
+                window.router.navigate('/login');
             } catch (error) {
                 errorMessage.textContent = error.message || 'Onbekende registratiefout.';
             }
@@ -52,4 +54,4 @@ const registerPage = {
     }
 };
 
-window.registerPage = registerPage;
+// <-- AANGEPASTD: Deze regel is verwijderd (was: window.registerPage = registerPage;)

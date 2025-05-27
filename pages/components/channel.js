@@ -40,7 +40,7 @@ const channelPage = {
             // LET OP: Deze HLS URL 'http://localhost:8000' is voor je streaming server (bijv. NGINX-RTMP).
             // Deze heeft NIETS te maken met je Node.js backend op Render.
             // Als je later een live stream wilt hosten, moet deze URL naar die live stream server wijzen.
-            hlsUrl: `http://localhost:8000/live/${streamerUsername}/index.m3u8` 
+            hlsUrl: `http://localhost:8000/live/${streamerUsername}/index.m3u8`
         };
 
         if (Hls.isSupported()) {
@@ -170,4 +170,4 @@ const channelPage = {
     }
 };
 
-window.channelPage = channelPage;
+// <-- AANGEPASTD: Deze regel is verwijderd (was: window.channelPage = channelPage;)
