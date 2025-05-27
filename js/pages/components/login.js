@@ -1,5 +1,5 @@
 // js/pages/login.js
-import { loginUser } from '../api/auth.js'; // <-- AANGEPAST: Correcte import van loginUser
+import { loginUser } from 'js/api/auth.js'; // <-- AANGEPAST: Correcte import van loginUser
 
 const loginPage = {
     getHtml: () => {
