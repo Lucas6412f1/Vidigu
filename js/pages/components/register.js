@@ -1,5 +1,5 @@
 // js/pages/register.js
-import { registerUser } from '../js/api/auth.js'; // <-- AANGEPASTD: Correcte import van registerUser
+import { registerUser } from '../../api/auth.js'; // <-- AANGEPASTD: Correcte import van registerUser
 
 const registerPage = {
     getHtml: () => {
